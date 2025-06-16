@@ -1,5 +1,6 @@
 package org.example.project
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
@@ -14,14 +15,18 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     PreComposeApp {
-        Column(
-            modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text("Bienvenidos")
-            Text("Curso de Kotlin Multiplataforma con Compose")
+        val colors = getColorsTheme()
+
+        AppTheme {
+            Column(
+                modifier = Modifier
+                    .safeContentPadding()
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text("Bienvenidos")
+                Text("Curso de Kotlin Multiplataforma con Compose")
+            }
         }
     }
 }

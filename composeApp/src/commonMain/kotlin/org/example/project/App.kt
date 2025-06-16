@@ -26,6 +26,7 @@ fun App() {
             ) {
                 Text("Bienvenidos")
                 Text("Curso de Kotlin Multiplataforma con Compose")
+                Text("Curso de Kotlin Multiplataforma con Compose")
             }
         }
     }

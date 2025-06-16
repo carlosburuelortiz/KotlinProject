@@ -4,20 +4,20 @@ import org.example.project.data.ExpenseManager
 import org.example.project.model.Expense
 import org.example.project.model.ExpenseCategory
 
-class ExpenseRepositoryImpl: ExpenseRepository {
-    override fun getExpenseList(): List<Expense> {
-        return ExpenseManager.fakeExpenseList
+class ExpenseRepositoryImpl(private val expenseManager: ExpenseManager): ExpenseRepository {
+    override fun getAllExpenses(): List<Expense> {
+        return expenseManager.fakeExpenseList
     }
 
     override fun addExpense(expense: Expense) {
-        ExpenseManager.addNewExpense(expense)
+        expenseManager.addNewExpense(expense)
     }
 
     override fun editExpense(expense: Expense) {
-        ExpenseManager.editExpense(expense)
+        expenseManager.editExpense(expense)
     }
 
     override fun getCategories(): List<ExpenseCategory> {
-        return ExpenseManager.getCategories()
+        return expenseManager.getCategories()
     }
 }

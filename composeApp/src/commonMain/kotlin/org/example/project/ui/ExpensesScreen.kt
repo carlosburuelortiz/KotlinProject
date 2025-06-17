@@ -32,9 +32,13 @@ import androidx.compose.ui.unit.sp
 import org.example.project.data.ExpenseManager
 import org.example.project.getColorsTheme
 import org.example.project.model.Expense
+import org.example.project.presentation.ExpensesUiState
 
 @Composable
-fun ExpensesScreen(onExpenseClick: (expense: Expense) -> Unit) {
+fun ExpensesScreen(
+    uiState: ExpensesUiState,
+    onExpenseClick: (expense: Expense) -> Unit,
+) {
     val colors = getColorsTheme()
 
     LazyColumn(
@@ -49,11 +53,11 @@ fun ExpensesScreen(onExpenseClick: (expense: Expense) -> Unit) {
                 modifier = Modifier.background(colors.backgroundColor)
             ) {
                 // Composable
-                ExpensesTotalHeader(1023.3)
+                ExpensesTotalHeader(uiState.total)
                 AllExpensesHeader()
             }
         }
-        items(ExpenseManager.fakeExpenseList) { expense ->
+        items(uiState.expenses) { expense ->
             ExpensesItem(expense = expense, onExpenseClick = onExpenseClick)
         }
     }

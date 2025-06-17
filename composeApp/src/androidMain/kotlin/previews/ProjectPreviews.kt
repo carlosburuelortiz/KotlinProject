@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.example.project.data.ExpenseManager
+import org.example.project.presentation.ExpensesUiState
 import org.example.project.ui.AllExpensesHeader
 import org.example.project.ui.ExpensesItem
 import org.example.project.ui.ExpensesScreen
@@ -39,5 +40,11 @@ fun ExpensesItemPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun ExpensesScreenPreview() {
-    ExpensesScreen(onExpenseClick = {})
+    ExpensesScreen(
+        uiState = ExpensesUiState(
+            expenses = ExpenseManager.fakeExpenseList,
+            total = 1052.2
+        ),
+        onExpenseClick = {}
+    )
 }

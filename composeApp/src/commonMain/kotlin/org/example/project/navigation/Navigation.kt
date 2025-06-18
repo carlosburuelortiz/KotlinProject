@@ -1,6 +1,7 @@
 package org.example.project.navigation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -16,13 +17,12 @@ import org.example.project.presentation.ExpensesViewModel
 import org.example.project.ui.ExpensesScreen
 
 @Composable
-fun Navigation(navigator: Navigator) {
+fun Navigation(navigator: Navigator, paddingValues: PaddingValues) {
     val colors = getColorsTheme()
     val viewModel = viewModel(modelClass = ExpensesViewModel::class) {
         ExpensesViewModel(ExpenseRepositoryImpl(ExpenseManager))
     }
 
-    // WIP Will be this a problem with TapBarApp?
     NavHost(
         modifier = Modifier.background(colors.backgroundColor),
         navigator = navigator,
@@ -30,7 +30,7 @@ fun Navigation(navigator: Navigator) {
     ) {
         scene(route = "/home") {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            ExpensesScreen(uiState) { expense ->
+            ExpensesScreen(uiState, paddingValues) { expense ->
                 navigator.navigate("/addExpenses/${expense.id}")
             }
         }

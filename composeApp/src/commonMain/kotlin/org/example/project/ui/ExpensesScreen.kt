@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,11 +38,13 @@ import org.example.project.presentation.ExpensesUiState
 @Composable
 fun ExpensesScreen(
     uiState: ExpensesUiState,
+    paddingValues: PaddingValues,
     onExpenseClick: (expense: Expense) -> Unit,
 ) {
     val colors = getColorsTheme()
 
     LazyColumn(
+        contentPadding = paddingValues,
         modifier = Modifier.padding(
             horizontal = 16.dp,
             vertical = 16.dp,

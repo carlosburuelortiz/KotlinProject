@@ -1,7 +1,10 @@
 package org.example.project
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -43,7 +46,8 @@ fun App() {
             val isEditOrAddExpenses = titleTopBar != TitleTopBarTypes.DASHBOARD.value
 
             Scaffold(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize()
+                    .padding(WindowInsets.statusBars.asPaddingValues()),
                 topBar = {
                     Surface(
                         shadowElevation = 0.dp,
@@ -104,8 +108,8 @@ fun App() {
                         }
                     }
                 }
-            ) {
-                Navigation(navigator)
+            ) { paddingValues ->
+                Navigation(navigator, paddingValues)
             }
         }
     }

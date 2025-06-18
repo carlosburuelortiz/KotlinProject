@@ -16,12 +16,13 @@ import org.example.project.presentation.ExpensesViewModel
 import org.example.project.ui.ExpensesScreen
 
 @Composable
-fun Navigator(navigator: Navigator) {
+fun Navigation(navigator: Navigator) {
     val colors = getColorsTheme()
     val viewModel = viewModel(modelClass = ExpensesViewModel::class) {
         ExpensesViewModel(ExpenseRepositoryImpl(ExpenseManager))
     }
 
+    // WIP Will be this a problem with TapBarApp?
     NavHost(
         modifier = Modifier.background(colors.backgroundColor),
         navigator = navigator,

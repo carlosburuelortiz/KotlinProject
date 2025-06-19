@@ -41,6 +41,7 @@ fun Navigation(navigator: Navigator, paddingValues: PaddingValues) {
             val expenseToEditOrAdd = idFromPath?.let { id -> viewModel.getExpenseWithId(id) }
 
             ExpensesDetailScreen(
+                paddingValues = paddingValues,
                 expenseToEdit = expenseToEditOrAdd,
                 categoryList = viewModel.getCategories(),
             ) { expense ->

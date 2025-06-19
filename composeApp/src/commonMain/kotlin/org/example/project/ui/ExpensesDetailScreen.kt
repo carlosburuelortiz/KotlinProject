@@ -1,10 +1,10 @@
 package org.example.project.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,8 +18,8 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
@@ -56,6 +56,7 @@ import org.example.project.utils.extension.orZero
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExpensesDetailScreen(
+    paddingValues: PaddingValues,
     expenseToEdit: Expense? = null,
     categoryList: List<ExpenseCategory> = emptyList(),
     addExpenseAndNavigateBack: (Expense) -> Unit,
@@ -76,12 +77,12 @@ fun ExpensesDetailScreen(
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(sheetState.targetValue) {
-        if (sheetState.targetValue == SheetValue.Expanded) {
+        /*if (sheetState.targetValue == SheetValue.Expanded) {
             keyboardController?.hide()
-        }
+        }*/
     }
 
-    ModalBottomSheet(
+    /*ModalBottomSheet(
         onDismissRequest = {
             scope.launch { sheetState.hide() }
         },
@@ -91,10 +92,12 @@ fun ExpensesDetailScreen(
             expenseCategory = it.name
             categorySelected = it.name
         }
-    }
+    }*/
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(vertical = 16.dp, horizontal = 16.dp).background(Color.Red)
+        modifier = Modifier.fillMaxSize()
+            .padding(paddingValues)
+            .padding(vertical = 16.dp, horizontal = 16.dp),
     ) {
         ExpanseAmount(
             priceContent = price,
@@ -183,7 +186,7 @@ private fun ExpanseAmount(
                 color = Color.Gray,
             )
         }
-        Divider(color = Color.Black, thickness = 2.dp)
+        HorizontalDivider(color = Color.Black, thickness = 2.dp)
     }
 }
 

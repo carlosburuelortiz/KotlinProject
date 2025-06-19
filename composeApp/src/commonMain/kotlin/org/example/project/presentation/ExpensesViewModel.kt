@@ -8,6 +8,7 @@ import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 import org.example.project.domain.ExpenseRepository
 import org.example.project.model.Expense
+import org.example.project.model.ExpenseCategory
 
 data class ExpensesUiState(
     val expenses: List<Expense> = emptyList(),
@@ -60,5 +61,9 @@ class ExpensesViewModel(
 
     fun getExpenseWithId(id: Long): Expense {
         return allExpenses.first { it.id == id }
+    }
+
+    fun getCategories(): List<ExpenseCategory> {
+        return repository.getCategories()
     }
 }

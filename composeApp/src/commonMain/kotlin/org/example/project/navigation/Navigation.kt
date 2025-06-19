@@ -40,7 +40,10 @@ fun Navigation(navigator: Navigator, paddingValues: PaddingValues) {
             val idFromPath = backStackEntry.path<Long>("id")
             val expenseToEditOrAdd = idFromPath?.let { id -> viewModel.getExpenseWithId(id) }
 
-            ExpensesDetailScreen(expenseToEdit = expenseToEditOrAdd) { expense ->
+            ExpensesDetailScreen(
+                expenseToEdit = expenseToEditOrAdd,
+                categoryList = viewModel.getCategories(),
+            ) { expense ->
                 if (expenseToEditOrAdd == null) {
                     viewModel.addExpense(expense)
                 } else {

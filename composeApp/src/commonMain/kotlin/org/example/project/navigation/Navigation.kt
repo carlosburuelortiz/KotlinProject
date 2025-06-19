@@ -14,6 +14,7 @@ import org.example.project.data.ExpenseManager
 import org.example.project.domain.ExpenseRepositoryImpl
 import org.example.project.getColorsTheme
 import org.example.project.presentation.ExpensesViewModel
+import org.example.project.ui.ExpensesDetailScreen
 import org.example.project.ui.ExpensesScreen
 
 @Composable
@@ -35,11 +36,18 @@ fun Navigation(navigator: Navigator, paddingValues: PaddingValues) {
             }
         }
 
-        scene(route = "/addExpenses/{id}") { backStackEntry ->
+        scene(route = "/addExpenses/{id}?") { backStackEntry ->
             val idFromPath = backStackEntry.path<Long>("id")
-            val isAddExpense = idFromPath?.let { id -> viewModel.getExpenseWithId(id) }
+            val expenseToEditOrAdd = idFromPath?.let { id -> viewModel.getExpenseWithId(id) }
 
-            // Crear expensesDetailScreen
+            ExpensesDetailScreen(expenseToEdit = expenseToEditOrAdd) { expense ->
+                if (expenseToEditOrAdd == null) {
+                    viewModel.addExpense(expense)
+                } else {
+                    viewModel.editExpense(expense)
+                }
+                navigator.popBackStack()
+            }
         }
     }
 }

@@ -120,7 +120,7 @@ fun getTitleTopAppBar(navigator: Navigator): String {
     var titleTopBar = TitleTopBarTypes.DASHBOARD
 
     val isOnAddExpense =
-        navigator.currentEntry.collectAsState(null).value?.route?.route.equals("/addExpenses/{id}")
+        navigator.currentEntry.collectAsState(null).value?.route?.route.equals("/addExpenses/{id}?")
     if (isOnAddExpense) {
         titleTopBar = TitleTopBarTypes.ADD
     }

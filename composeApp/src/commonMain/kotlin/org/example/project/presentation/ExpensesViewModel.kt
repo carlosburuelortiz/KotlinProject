@@ -31,7 +31,7 @@ class ExpensesViewModel(
         }
     }
 
-    private fun addExpense(expense: Expense) {
+    fun addExpense(expense: Expense) {
         viewModelScope.launch {
             repository.addExpense(expense)
             updateState()
